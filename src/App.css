@@ -61,9 +61,6 @@
   align-items: center;
 }
 
-/* .carousel.slide .carousel-indicators [data-bs-target] {
-  background-color: red;
-} */
 .carousel.slide a span {
   filter: invert(1);
 }

@@ -1,20 +1,16 @@
 import React from "react";
+import cx from "classnames";
 import { Card, Carousel, Col, Row } from "react-bootstrap";
-import Styles from "./Styles.module.css";
-import "../App.css";
+
+//Custom file and components import
 import { questions } from "../constant";
 import TextInput from "./inputs/TextInput";
-import cx from "classnames";
 
-// const Slide = React.forwardRef((props, ref) => {
-//   const {question} = props
-//   return (
-//     <Carousel.Item ref={ref}>
-//         <h2>{question}</h2>
-//           <TextInput type="text"/>
-//       </Carousel.Item>
-//   )
-// })
+//CSS File Import
+import "../App.css";
+import Styles from "./Styles.module.css";
+
+
 
 const OptionCard = ({text}) => {
   return (
@@ -26,6 +22,7 @@ const OptionCard = ({text}) => {
     </div>
   );
 };
+
 
 const CustomSwiper = () => {
   return (

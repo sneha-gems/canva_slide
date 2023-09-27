@@ -1,13 +1,13 @@
 export const questions = [
-  { id: 0, title: "General questions" },
-  { id: 1, question: "What is your name?", input: "text" },
-  { id: 2, question: "What is your email?", input: "text" },
-  {
-    id: 3,
-    question: "When is your birthday?",
-    subtext: "(mm/dd/yr)",
-    input: "text",
-  },
+  // { id: 0, title: "General questions" },
+  // { id: 1, question: "What is your name?", input: "text" },
+  // { id: 2, question: "What is your email?", input: "text" },
+  // {
+  //   id: 3,
+  //   question: "When is your birthday?",
+  //   subtext: "(mm/dd/yr)",
+  //   input: "text",
+  // },
   {
     id: 4,
     question: "How would you describe your gender?",

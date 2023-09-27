@@ -65,12 +65,12 @@
   filter: invert(1);
 }
 
-input {
+/* input {
   width: 40%;
   border-radius: 50px 50px 50px 50px;
   border: 0;
   height: 40px;
-}
+} */
 
 h3 {
   font-weight: 400;
@@ -87,4 +87,8 @@ h1 {
   color: rgb(0, 0, 0);
   line-height: 186px;
   letter-spacing: 0em;
+}
+
+.register-container {
+  height: 100vh;
 }

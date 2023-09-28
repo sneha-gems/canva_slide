@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { Form, Row, Button } from "react-bootstrap";
+import TextInput from "../inputs/TextInput";
 
 const ResetpasswordForm = () => {
   const formik = useFormik({
@@ -15,7 +16,7 @@ const ResetpasswordForm = () => {
           <Form.Label>Email</Form.Label>
         </Row>
         <Row>
-          <input
+          <TextInput
             type={"email"}
             name='email'
             placeholder="Enter your email"

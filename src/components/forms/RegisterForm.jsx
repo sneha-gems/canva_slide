@@ -4,6 +4,8 @@ import Layout from "./Layout";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { getDatabase, ref, set } from "firebase/database";
+import { useNavigate } from "react-router-dom";
+import TextInput from "../inputs/TextInput";
 
 const initialValues = {
   firstName: "",
@@ -24,6 +26,8 @@ function writeUserData(userId, name, values) {
 
 
 const RegisterForm = () => {
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values) => {
@@ -34,6 +38,8 @@ const RegisterForm = () => {
           const user = userCredential.user;
           writeUserData( user.uid, values.userName, {...values})
           toast.success("user created successfully.");
+          navigate('/signin')
+
           // ...
         })
         .catch((error) => {
@@ -51,10 +57,10 @@ const RegisterForm = () => {
         <Row className="m-3">
           <Col xs={6}>
             <Row>
-              <Form.Label>First Name</Form.Label>
+              <Form.Label className="form-label">First Name</Form.Label>
             </Row>
             <Row>
-              <input
+              <TextInput
                 type={"text"}
                 name="firstName"
                 placeholder="First name"
@@ -65,10 +71,10 @@ const RegisterForm = () => {
           </Col>
           <Col xs={6}>
             <Row>
-              <Form.Label>Last Name</Form.Label>
+              <Form.Label className="form-label">Last Name</Form.Label>
             </Row>
             <Row>
-              <input
+              <TextInput
                 type={"text"}
                 name="lastName"
                 placeholder="Last name"
@@ -81,10 +87,10 @@ const RegisterForm = () => {
         <Row className="m-3">
           <Col xs={6}>
             <Row>
-              <Form.Label>User Name</Form.Label>
+              <Form.Label className="form-label">User Name</Form.Label>
             </Row>
             <Row>
-              <input
+              <TextInput
                 type={"text"}
                 name="userName"
                 placeholder="User name"
@@ -95,10 +101,10 @@ const RegisterForm = () => {
           </Col>
           <Col>
             <Row>
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="form-label">Email</Form.Label>
             </Row>
             <Row>
-              <input
+              <TextInput
                 type={"email"}
                 name="email"
                 placeholder="Email"
@@ -111,10 +117,10 @@ const RegisterForm = () => {
         <Row className="m-3">
           <Col>
             <Row>
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="form-label">Password</Form.Label>
             </Row>
             <Row>
-              <input
+              <TextInput
                 type={"password"}
                 name="password"
                 placeholder="password"
@@ -125,10 +131,10 @@ const RegisterForm = () => {
           </Col>
           <Col>
             <Row>
-              <Form.Label>Confirm password</Form.Label>
+              <Form.Label className="form-label">Confirm password</Form.Label>
             </Row>
             <Row>
-              <input
+              <TextInput
                 type={"password"}
                 name="confirmPassword"
                 placeholder="confirmPassword"

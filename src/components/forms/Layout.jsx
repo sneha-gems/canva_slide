@@ -1,22 +1,22 @@
 import { Card, Row } from "react-bootstrap";
 
-const Layout = ({ children }) => {
+const Layout = ({textTitle='Register', children }) => {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center register-container">
         <Card style={{ width: "45rem" }}>
           <Card.Body>
-            <div className="d-flex justify-content-center align-items-center">
-                <Row>
-              <Row>
-                <img alt="image here" />
-              </Row>
-              <Row>
-                <h2>Register</h2>
-              </Row>
-              </Row>
+            <div className="wrapper">
+            <div className="container">
+            <div class="image-container text-center">
+                    <img src=".././impulse.png" alt='logo image'/>
+                </div>
+                <div class="mb-5 text-center">
+                    <h3 class="mx-auto">{textTitle}</h3>
+                </div>
             </div>
             {children}
+            </div>
           </Card.Body>
         </Card>
       </div>

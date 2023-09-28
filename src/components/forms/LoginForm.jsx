@@ -64,7 +64,7 @@ const LoginForm = () => {
           </Button>
         </div>
         <div>
-          <p class="text-center login-text">
+          <p className="text-center login-text">
             Don't have an account? <a href="/signup" className="text-decoration-none"><span>Sign up</span></a>
           </p>
         </div>

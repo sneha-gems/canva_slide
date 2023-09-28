@@ -1,11 +1,13 @@
 import { useFormik } from "formik";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Layout from "./Layout";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
-import { getDatabase, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import TextInput from "../inputs/TextInput";
+import db from '../../firebase/index.js';
+import { collection, doc, setDoc } from "firebase/firestore";
+
 
 const initialValues = {
   firstName: "",
@@ -16,16 +18,17 @@ const initialValues = {
   confirmPassword: "",
 };
 
-function writeUserData(userId, name, values) {
-  const db = getDatabase();
-  set(ref(db, "/users/" + userId), {
-    username: name,
-    ...values,
-  });
-}
+
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+
+  const collectionRef = collection(db, 'users')
+
+  const writeUserData = async (userId, name, values) => {
+    const userRef = doc(collectionRef, userId)
+    await setDoc(userRef, {userId: userId, name: name, ...values});
+  }
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -35,14 +38,19 @@ const RegisterForm = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          writeUserData(user.uid, values.userName, { ...values });
+          try {
+            writeUserData(user.uid, values.userName, { ...values });
+          } catch (error) {
+            toast.error(error);
+          }
+          
           toast.success("user created successfully.");
           navigate("/signin");
 
           // ...
         })
         .catch((error) => {
-          const errorCode = error.code;
+          // const errorCode = error.code;
           const errorMessage = error.message;
           toast.error(errorMessage);
           // ..
@@ -149,7 +157,7 @@ const RegisterForm = () => {
           </Button>
         </div>
         <div>
-          <p class="text-center login-text">
+          <p className="text-center login-text">
             Already an account? <a href="/signin" className="text-decoration-none"><span>Login</span></a>
           </p>
         </div>

@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Button } from "react-bootstrap";
 
 const TextInput = ({ ...props }) => {
 
     const [type, setType] = useState(props.type)
 
-    const handleClick = () => {
-        setType('text')
-    } 
+    const handleClick = useCallback(() => {
+      setType("text")
+    }, []) 
+
   return (
     <div className="mt-20 position-relative">
-      <input className="form-control" {...props} />
-      {props.type === 'password' && (
+      <input className="form-control" {...props} type={type}  />
+      {type === 'password' && (
           <Button onClick={handleClick} className="eye-icon bg-transparent border-0 p-0">
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -1,12 +1,15 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useFormik } from "formik";
+import { useContext } from "react";
 import { Row, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { authContext } from "../../contexts/AuthContext";
 import TextInput from "../inputs/TextInput";
 import Layout from "./Layout";
 
 const LoginForm = () => {
+  const { setAuthData } = useContext(authContext);
   const navigate = useNavigate()
   const formik = useFormik({
     initialValues: { email: "", password: "" },
@@ -20,6 +23,7 @@ const LoginForm = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          setAuthData(user.accessToken)
           toast.success('Successfully sign in')
           navigate('/')
           // ...

@@ -11,9 +11,9 @@ const ResetpasswordForm = () => {
   
   return (
     <>
-      <form onSubmit={formik.handleSubmit}>
-        <Row>
-          <Form.Label>Email</Form.Label>
+      <form className="m-3 reset_password_container" onSubmit={formik.handleSubmit}>
+        <Row >
+          <Form.Label className="form-label">Email</Form.Label>
         </Row>
         <Row>
           <TextInput
@@ -24,9 +24,11 @@ const ResetpasswordForm = () => {
             value={formik.values.email}
           />
         </Row>
-        <Row>
-            <Button type='submit'>Send Request</Button>
-        </Row>
+        <div className="text-center my-3">
+          <Button type="submit" className="btn btn-primary w-100 register-btn">
+          Send Request
+          </Button>
+        </div>
       </form>
     </>
   );

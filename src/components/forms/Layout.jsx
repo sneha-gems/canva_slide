@@ -1,10 +1,10 @@
-import { Card, Row } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const Layout = ({textTitle='Register', children }) => {
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center register-container">
-        <Card style={{ width: "45rem" }}>
+      <div className="d-flex justify-content-center align-items-center register-container pages_background_color custom_font_family">
+        <Card className="border-0">
           <Card.Body>
             <div className="wrapper">
             <div className="container">

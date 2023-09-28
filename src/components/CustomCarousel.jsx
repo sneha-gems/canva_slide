@@ -9,6 +9,7 @@ import TextInput from "./inputs/TextInput";
 //CSS File Import
 import "../App.css";
 import Styles from "./Styles.module.css";
+import { useFormik } from "formik";
 
 
 
@@ -25,8 +26,20 @@ const OptionCard = ({text}) => {
 
 
 const CustomSwiper = () => {
+
+  const handleSubmit = (values) => {
+    console.log(values)
+  }
+
+  const formik = useFormik({
+    initialValues: {},
+    onSubmit: handleSubmit,
+  })
+
+  
   return (
     <Carousel indicators={false} interval={null}>
+      {/* <form> */}
       {questions.map((item) => {
         return (
           <Carousel.Item key={item.id}>
@@ -75,6 +88,7 @@ const CustomSwiper = () => {
           </Carousel.Item>
         );
       })}
+      {/* </form> */}
     </Carousel>
   );
 };

@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.register-btn,
+.register-btn:hover {
+  background-color: #ff7f7f;
+  border-color: #ff7f7f;
+  border-radius: 30px;
+}
+.login-text span {
+  color: #ff7f7f;
+  font-weight: 600;
+}
+
+.custom_font_family {
+  font-family: "Playfair Display", serif !important;
+}

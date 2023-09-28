@@ -4,7 +4,7 @@ import ResetpasswordForm from "../components/forms/ResetpasswordForm"
 
 const Resetpassword = () => {
     return (
-        <Layout>
+        <Layout textTitle="Reset Password">
             <ResetpasswordForm/>
         </Layout>
     )

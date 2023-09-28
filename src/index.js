@@ -17,13 +17,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBF9B9UXmVylblznFBN0vF5HNEHNgx9Ccg",
-  authDomain: "quiz-game-8b9d7.firebaseapp.com",
-  projectId: "quiz-game-8b9d7",
-  storageBucket: "quiz-game-8b9d7.appspot.com",
-  messagingSenderId: "981671622528",
-  appId: "1:981671622528:web:137494ff852fc6daedb365",
-  measurementId: "G-2JLPEQP25C",
+  apiKey: "AIzaSyBfwDZ1u34v9EW8WjRpRlDHIwnbkTHt4s4",
+  authDomain: "quizdemov1.firebaseapp.com",
+  projectId: "quizdemov1",
+  storageBucket: "quizdemov1.appspot.com",
+  messagingSenderId: "792210030232",
+  appId: "1:792210030232:web:8a4c73571761bcc6539aed",
+  measurementId: "G-5TB08FXYC9",
 };
 
 const router = createBrowserRouter([
@@ -50,9 +50,9 @@ export const auth = getAuth(app);
 export const db = getFirestore();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
     <RouterProvider router={router} />
     <ToastContainer />
   </React.StrictMode>

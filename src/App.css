@@ -91,4 +91,27 @@ h1 {
 
 .register-container {
   height: 100vh;
+  background: linear-gradient(
+      215.52deg,
+      #f9f4f8 12.49%,
+      #f7f5f2 42.66%,
+      #f7f6fb 81.26%
+    ),
+    linear-gradient(0deg, #ffffff, #ffffff);
+}
+
+.eye-icon {
+  position: absolute;
+  right: 21px;
+  top: 6px;
+  fill: grey;
+}
+
+.forgot_password_container {
+  text-align: right;
+  color: #ff7f7f;
+}
+
+.reset_password_container {
+  width: 306px;
 }

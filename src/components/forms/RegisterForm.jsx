@@ -18,15 +18,14 @@ const initialValues = {
 
 function writeUserData(userId, name, values) {
   const db = getDatabase();
-  set(ref(db, '/users/' + userId), {
+  set(ref(db, "/users/" + userId), {
     username: name,
-    ...values
+    ...values,
   });
 }
 
-
 const RegisterForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -36,9 +35,9 @@ const RegisterForm = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          writeUserData( user.uid, values.userName, {...values})
+          writeUserData(user.uid, values.userName, { ...values });
           toast.success("user created successfully.");
-          navigate('/signin')
+          navigate("/signin");
 
           // ...
         })
@@ -137,16 +136,23 @@ const RegisterForm = () => {
               <TextInput
                 type={"password"}
                 name="confirmPassword"
-                placeholder="confirmPassword"
+                placeholder="confirm Password"
                 onChange={formik.handleChange}
                 value={formik.values.confirmPassword}
               />
             </Row>
           </Col>
         </Row>
-        <Row className="m-3">
-          <Button type="submit">Register</Button>
-        </Row>
+        <div className="text-center my-3">
+          <Button type="submit" className="btn btn-primary w-75 register-btn">
+            Register
+          </Button>
+        </div>
+        <div>
+          <p class="text-center login-text">
+            Already an account? <a href="/signin" className="text-decoration-none"><span>Login</span></a>
+          </p>
+        </div>
       </form>
     </Layout>
   );

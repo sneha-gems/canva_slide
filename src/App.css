@@ -115,3 +115,12 @@ h1 {
 .reset_password_container {
   width: 306px;
 }
+
+.input-card {
+  background-color: transparent;
+  border: 0px;
+  outline: none;
+  font-size: 1.1rem;
+  text-align: center;
+  cursor: pointer;
+}

@@ -8,7 +8,6 @@ import TextInput from "../inputs/TextInput";
 import db from '../../firebase/index.js';
 import { collection, doc, setDoc } from "firebase/firestore";
 
-
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -17,8 +16,6 @@ const initialValues = {
   password: "",
   confirmPassword: "",
 };
-
-
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -43,10 +40,8 @@ const RegisterForm = () => {
           } catch (error) {
             toast.error(error);
           }
-          
           toast.success("user created successfully.");
           navigate("/signin");
-
           // ...
         })
         .catch((error) => {

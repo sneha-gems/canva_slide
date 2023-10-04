@@ -429,4 +429,8 @@ export const questions = [
       "On average, how many times per year do you get sick? (flu, infection, common cold)",
     options: ["Almost never", "2-3 times", "4+ times"],
   },
+  {
+    id: 73,
+    button: "submit",
+  },
 ];

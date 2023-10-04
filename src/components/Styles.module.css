@@ -20,6 +20,12 @@
   border-radius: 15px;
 }
 
+.option_container_active > div {
+  background-color: #ff7450;
+  width: 180px;
+  border-radius: 15px;
+}
+
 .outer_option_container {
   display: flex;
   flex-wrap: wrap;
@@ -52,4 +58,11 @@
   margin: 0;
   padding: 0px;
   font-size: 1.1rem;
+}
+
+.submit_button {
+  background-color: #ff7450 !important;
+  width: 280px;
+  border-radius: 15px;
+  border: 0 !important;
 }

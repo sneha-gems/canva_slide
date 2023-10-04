@@ -23,7 +23,7 @@ const LoginForm = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          setAuthData(user.accessToken)
+          setAuthData(user)
           toast.success('Successfully sign in')
           navigate('/')
           // ...

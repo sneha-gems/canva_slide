@@ -1,30 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import cx from "classnames";
 import { Button, Card, Carousel, Col, Row } from "react-bootstrap";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 
 //Custom file and components import
-import TextInput from "./inputs/TextInput";
+
 import db from "../firebase/index.js";
 
 //CSS File Import
 import "../App.css";
 import Styles from "./Styles.module.css";
-import { useFormik } from "formik";
+import { FieldArray, useFormik } from "formik";
 import { useReadData } from "../hooks/useReadData";
 import { questions } from "../contexts/constant";
+import { toast } from "react-toastify";
 
-const OptionCard = ({ text, index }) => {
+const OptionCard = ({ text, index,queIndex, formik }) => {
+
+  const [selected, setSelected] = useState("")
+
   const handleClick = (e) => {
-    console.log("value", e.target.value);
+    delete formik?.values?.questions?.[queIndex]?.options
+    setSelected((prev) => prev === e.target.value ? "" : e.target.value)
   };
+
   return (
-    <div className={Styles.option_container} key={`options-${index}`}>
+    <div className={selected === text ? Styles.option_container_active :Styles.option_container} key={`options-${index}`}>
       <Card className={cx(Styles.custum_height, "border-0")}>
         <Card.Body className="d-flex justify-content-center align-items-center">
-          {/* <p className={Styles.option_text}>{text}</p></Card.Body> */}
           <input
-            name={`questions[${index}].options`}
+            name={`questions[${queIndex}].options[${index}]`}
             type={"text"}
             value={text}
             readOnly
@@ -40,12 +45,23 @@ const OptionCard = ({ text, index }) => {
 const CustomSwiper = () => {
   // const {generalQuestions} = useReadData()
 
-  // const updatedGeneralQuestions = generalQuestions.filter((item, index) => generalQuestions.indexOf(item) === index)
-  // console.log('generalQuestions', generalQuestions)
+const data = localStorage.getItem('user')
+const user = JSON.parse(data)
 
-  const handleSubmit = (values) => {
-    console.log(values);
-  };
+  const writeQuizeData = async (uid, values) => {
+  const quizeRef = uid && collection(db, `quiz-data/${user.email}/${user.uid}`)
+    const userRef =  doc(quizeRef, user.uid)
+    await setDoc(userRef, { ...values});
+  }
+
+const handleSubmit = (values) => {
+  console.log(values);
+  try {
+    user.uid && writeQuizeData(user.uid, values.questions)
+  } catch (error) {
+    toast.error(error)
+  }
+};
 
   const formik = useFormik({
     initialValues: { questions: [...questions] },
@@ -55,11 +71,12 @@ const CustomSwiper = () => {
   return (
     <Carousel indicators={false} interval={null}>
       {questions?.length !== 0 &&
-        questions?.map((item) => {
+        questions?.map((item, queIndex) => {
           return (
             <Carousel.Item key={item.id}>
               <form onSubmit={formik.handleSubmit} key={item.id}>
                 <>
+                {/* <FieldArray name="questions"/>  */}
                   <Col>
                     {item.title && (
                       <Row
@@ -100,9 +117,7 @@ const CustomSwiper = () => {
                     {item.subtext && (
                       <p className={Styles.italic_text}>{item.subtext}</p>
                     )}
-                    {/* {item.input === "text" && (
-                <TextInput type="text" />
-              )} */}
+
                     {item.options && (
                       <div>
                         <div
@@ -117,6 +132,8 @@ const CustomSwiper = () => {
                             <OptionCard
                               text={option}
                               index={index}
+                              queIndex={queIndex}
+                              formik={formik}
                               key={`options-${index}`}
                             />
                           ))}
@@ -124,7 +141,8 @@ const CustomSwiper = () => {
                       </div>
                     )}
                   </Col>
-                  <Button type="submit">Submit quiz</Button>
+                  {item.button &&
+                  <Button type="submit" className={Styles.submit_button}>Submit quiz</Button>}
                 </>
               </form>
             </Carousel.Item>

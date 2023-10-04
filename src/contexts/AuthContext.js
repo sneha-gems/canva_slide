@@ -8,7 +8,8 @@ const AuthProvider = ({ children }) => {
 
   const setAuthData = (data) => {
     setAuth({ data: data });
-    localStorage.setItem("token", data);
+    localStorage.setItem("token", data.accessToken);
+    localStorage.setItem("user", JSON.stringify(data));
   };
   // a function that will help us to add the user data in the auth;
 
